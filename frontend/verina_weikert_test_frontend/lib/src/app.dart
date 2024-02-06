@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:verina_weikert_test_frontend/src/bindings/auth.binding.dart';
+import 'package:verina_weikert_test_frontend/src/bindings/clients.binding.dart';
+import 'package:verina_weikert_test_frontend/src/bindings/tags.binding.dart';
+import 'package:verina_weikert_test_frontend/src/bindings/user.binding.dart';
 import 'package:verina_weikert_test_frontend/src/views/auth/sign-in/signin.screen.dart';
+import 'package:verina_weikert_test_frontend/src/views/clients-screen/clients.screen.dart';
+import 'package:verina_weikert_test_frontend/src/views/home/home.screen.dart';
+import 'package:verina_weikert_test_frontend/src/views/tags-screen/tags.screen.dart';
 //import 'package:verina_weikert_test_frontend/src/views/home/home.scree.dart';
 
 class App extends StatelessWidget {
@@ -10,6 +17,45 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Flutter Demo',
+      getPages: [
+        GetPage(
+          name: "login", 
+          page: () => const LoginScreen(), 
+          bindings: [ 
+            AuthBinding(),
+            UserBinding(),
+            ClientsBinding(),
+            TagsBinding()
+          ]
+        ),
+        GetPage(
+          name: "home", 
+          page: () => const HomeScren(), 
+          bindings: [
+            UserBinding(),
+            ClientsBinding(),
+            TagsBinding()
+          ]
+        ),
+        GetPage(
+          name: "clients", 
+          page: () => const ClientsScreen(), 
+          bindings: [
+            UserBinding(),
+            ClientsBinding(),
+            TagsBinding()
+          ]
+        ),
+        GetPage(
+          name: "tags", 
+          page: () => const TagsScreen(), 
+          bindings: [ 
+            UserBinding(),
+            ClientsBinding(),
+            TagsBinding()
+          ]
+        ),
+      ],
       theme: ThemeData(
         // This is the theme of your application.
         //
